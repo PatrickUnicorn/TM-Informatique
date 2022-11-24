@@ -8,31 +8,27 @@
             class="drop-zone"
             @drop="onDrop($event, 1)"
             @dragenter.prevent
-            @dragover.prevent
-        >
+            @dragover.prevent>
             <div 
                 v-for="item in getList(1)" 
                 :key="item.id" 
                 class="drag-el"
                 draggable="true"
-                v-text="item.title"
-            >
+                v-text="item.title">
             </div>
         </div>
         <div 
             class="drop-zone"
             @drop="onDrop($event, 2)"
             @dragenter.prevent
-            @dragover.prevent
-        >
+            @dragover.prevent>
             <div 
                 v-for="item in getList(2)" 
                 :key="item.id" 
                 class="drag-el"
                 draggable="true"
                 @dragstart = "startDrag($event, item)"
-                v-text ="item.title"
-            >
+                v-text ="item.title">
             </div>
         </div>
     </div>
@@ -52,7 +48,6 @@
             const getList = (list) => {
                 console.log(items.value)
                 let itemFilter = items.value.filter((item) => item.list == list)
-                console.log(itemFilter)
                 return itemFilter
                 
             }
@@ -63,7 +58,6 @@
             }
             const onDrop = (event, list) => {
                 const itemID = event.dataTransfer.getData('itemID')
-                console.log(itemID)
                 const item = items.value.find((item) => item.id == itemID)
                 
                 item.list = list
