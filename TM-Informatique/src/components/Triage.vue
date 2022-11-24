@@ -14,6 +14,7 @@
                 :key="item.id" 
                 class="drag-el"
                 draggable="true"
+                @dragstart = "startDrag($event, item)"
                 v-text="item.title">
             </div>
         </div>
@@ -32,6 +33,7 @@
             </div>
         </div>
     </div>
+    <v-btn variant="outlined">outlined</v-btn>
 </div>
 </template>
     

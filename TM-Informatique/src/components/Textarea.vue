@@ -17,6 +17,8 @@ export default {
     padding: 0.5rem;
     border-radius: 10px;
 	margin-bottom: 1rem;
+	max-width: 75%;
+	background-color: var(--light);
 }
 
 .app3 {
