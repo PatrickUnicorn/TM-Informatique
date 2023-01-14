@@ -43,7 +43,8 @@ button {
 }
 .app {
     display: flex;
-    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
     main {
         padding: 2rem;
         @media (max-width: 768px) {

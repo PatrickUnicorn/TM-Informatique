@@ -69,7 +69,7 @@ const NextQuestion = () => {
 		
 		<section class="quiz" v-if="!quizCompleted">
 			<div class="quiz-info">
-				<span class="question">{{ getCurrentQuestion.question }}</span>
+				<span class="question-qcm">{{ getCurrentQuestion.question }}</span>
 				<span class="score">Score {{ score }}/{{ questions.length }}</span>
 			</div>
 			
@@ -118,7 +118,7 @@ const NextQuestion = () => {
 
 		<section v-else>
 			<h2>You have finished the quiz!</h2>
-			<p>Your score is {{ score }}/{{ questions.length }}</p>
+			<p class="question-qcm">Your score is {{ score }}/{{ questions.length }}</p>
 		</section>
 	</main>
 </template>
@@ -138,7 +138,7 @@ const NextQuestion = () => {
 	height: 100vh;
     background-color: var(--dark-alt);
 }
-h1, h2{
+h2{
     color: var(--light);
 	font-size: 2rem;
 	margin-bottom: 2rem;
@@ -214,7 +214,7 @@ h2 {
 	margin-bottom: 2rem;
 	text-align: center;
 }
-p {
+.question-qcm {
 	color: var(--light);
 	font-size: 1.5rem;
 	text-align: center;

@@ -32,7 +32,7 @@ export default {
     background-color: var(--dark-alt);
 }
 
-h1, h2{
+h2{
     color: var(--light);
 	font-size: 2rem;
 	margin-bottom: 2rem;

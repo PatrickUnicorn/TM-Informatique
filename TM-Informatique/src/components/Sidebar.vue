@@ -19,7 +19,7 @@
                 <span class="material-icons">question_mark</span>
                 <span class="text">Question 1</span>
             </router-link>
-            <router-link class="button" to="/QuestionReponse">
+            <router-link class="button" to="/QCM2">
                 <span class="material-icons">question_mark</span>
                 <span class="text">Question 2</span>
             </router-link>
@@ -70,7 +70,7 @@ aside {
     overflow: hidden;
     min-height: 100vh;
     padding: 1rem;
-
+    left: 0;
     background-color: var(--dark);
     color:var(--light);
 
