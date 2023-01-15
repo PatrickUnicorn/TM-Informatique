@@ -64,13 +64,12 @@ const NextQuestion = () => {
 </script>
 
 <template>
-	<main class="app2">
+	<main class="qcm">
 		<h2>Question 1</h2>
 		
 		<section class="quiz" v-if="!quizCompleted">
 			<div class="quiz-info">
 				<span class="question-qcm">{{ getCurrentQuestion.question }}</span>
-				<span class="score">Score {{ score }}/{{ questions.length }}</span>
 			</div>
 			
 			<div class="options">
@@ -130,12 +129,13 @@ const NextQuestion = () => {
 	box-sizing: border-box;
 }
 
-.app2 {
+.qcm {
 	display: flex;
 	flex-direction: column;
-	align-items: center;
-	padding: 2rem;
-	height: 100vh;
+	justify-content: center;
+	align-self: center;
+	border-radius: 15px;
+	padding: 20px 0px;
     background-color: var(--dark-alt);
 }
 h2{
@@ -170,7 +170,7 @@ h2{
 .option {
 	padding: 1rem;
 	display: block;
-	background-color: var(--primary);
+	background-color: white;
 	margin-bottom: 0.5rem;
 	border-radius: 0.5rem;
 	cursor: pointer;
