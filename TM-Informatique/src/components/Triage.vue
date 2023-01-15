@@ -33,7 +33,6 @@
             </div>
         </div>
     </div>
-    <v-btn variant="outlined">outlined</v-btn>
 </div>
 </template>
     
