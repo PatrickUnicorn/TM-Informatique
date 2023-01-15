@@ -13,7 +13,7 @@ const questions = ref([
   },
   {
 	question: "Quel pays comporte le plus d'habitants",
-	answer: 2,
+	answer: 0,
 	options: [
 		'Inde',
 		'USA',
