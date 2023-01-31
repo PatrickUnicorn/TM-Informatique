@@ -35,6 +35,10 @@
                 <span class="material-icons">question_mark</span>
                 <span class="text">Question 4</span>
             </router-link>
+            <router-link class="button" to="/TextArea">
+                <span class="material-icons">question_mark</span>
+                <span class="text">Question 5</span>
+            </router-link>
             <router-link class="button" to="/about">
                 <span class="material-icons">visibility</span>
                 <span class="text">About</span>

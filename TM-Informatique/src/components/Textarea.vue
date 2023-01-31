@@ -1,56 +1,72 @@
 <template>
-    <div class="app3">
-        <h2>Question 2:</h2>
-        <textarea rows="5" cols="100" class="textarea" v-model="message" placeholder="Tapez votre réponse..."></textarea>
-        <button class="BtnSubmit">Confirmer</button>
-    </div>
-</template>
-
-<script>
-export default {
-    
-}
-</script>
-
-<style>
-.textarea {
-    padding: 0.5rem;
-    border-radius: 10px;
-	margin-bottom: 1rem;
-	max-width: 75%;
-	background-color: var(--light);
-}
-
-.app3 {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	padding: 2rem;
-	height: 100vh;
-    width: 100%;
-    border-radius: 0.5rem;
-    background-color: var(--dark-alt);
-}
-
-h2{
-    color: var(--light);
-	font-size: 2rem;
-	margin-bottom: 2rem;
-}
-
-.BtnSubmit {
-    appearance: none;
-	outline: none;
-	border: none;
-	cursor: pointer;
-	padding: 0.5rem 1rem;
-	background-color: var(--primary);
-	color: var(--dark);
-	font-weight: 700;
-	text-transform: uppercase;
-	font-size: 1.2rem;
-	border-radius: 0.5rem;
-}
-
-
-</style>
+	<div class="container">
+	  <h2 class="header">{{ question }}</h2>
+	  <textarea class="textarea" v-model="answer"></textarea>
+	  <button class="submit-button" @click="submitAnswer">Submit</button>
+	</div>
+  </template>
+  <style scoped>
+	.container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		background-color: #f2f2f2;
+		padding: 20px;
+	}
+	
+	.header {
+		margin-bottom: 20px;
+		font-size: 22px;
+		color: #333;
+	}
+	
+	.textarea {
+		width: 500px;
+		height: 200px;
+		margin-bottom: 20px;
+		resize: none;
+		background-color: #fff;
+		border: 1px solid #333;
+		padding: 10px;
+		font-size: 16px;
+		color: #333;
+	}
+	
+	.submit-button {
+		background-color: #333;
+		color: #fff;
+		font-size: 18px;
+		padding: 10px 20px;
+		border: none;
+		cursor: pointer;
+	}
+  </style>
+  <script>
+  import axios from 'axios'
+  
+  export default {
+	data() {
+	  return {
+		question: 'What is your favorite color?',
+		answer: ''
+	  }
+	},
+	methods: {
+	  async submitAnswer() {
+		// Prepare the answer to be sent to the database
+		const data = {
+		  question: this.question,
+		  answer: this.answer
+		}
+  
+		try {
+		  // Send the answer to the database using Axios
+		  await axios.post('/api/Student-long-answers', data)
+		  console.log('Answer submitted successfully!')
+		} catch (error) {
+		  console.error('Error submitting answer:', error)
+		}
+	  }
+	}
+  }
+  </script>

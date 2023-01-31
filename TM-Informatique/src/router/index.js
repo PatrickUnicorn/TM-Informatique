@@ -49,6 +49,11 @@ const router = createRouter ({
         },
 
         {
+            path :'/TextArea',
+            component: Textarea
+        },
+
+        {
             path: '/about',
             component: About
         },
