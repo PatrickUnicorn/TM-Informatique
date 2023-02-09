@@ -1,91 +1,99 @@
 <template>
-    <div class="quiz-container">
-        <div v-html="textWithBlanks" class="quiz-text"></div>
-        <form>
-        <div v-for="(blank, index) in blanks" :key="index" class="quiz-item">
-            <label class="quiz-label">{{blank.label}}</label>
-            <input v-model="blank.answer" type="text" class="quiz-input">
-        </div>
-        <button @click.prevent="submitQuiz" class="quiz-button">Submit</button>
-        </form>
+  <div class="quiz-container">
+    <div v-html="textWithAnswers"></div>
+    <form v-if="!submitted">
+      <div v-for="(blank, index) in blanks" :key="index">
+        <select ref="select" v-model="blank.answer">
+          <option v-for="option in blank.options" :key="option">
+            {{ option }}
+          </option>
+        </select>
+      </div>
+      <button @click.prevent="submitQuiz">Submit</button>
+    </form>
+    <div v-if="submitted">
+      <p>Quiz submitted!</p>
+      <button @click.prevent="changeAnswer">Change answer</button>
     </div>
+  </div>
 </template>
 
 <script>
 export default {
-    data() {
-        return {
-            text: 'The capital of France is ___1___. The Eiffel Tower is located in ___2___. The Louvre Museum is also located in ___3___.',
-            blanks: [
-                { label: 'Blank 1', answer: '' },
-                { label: 'Blank 2', answer: '' },
-                { label: 'Blank 3', answer: '' },
-            ],
+  data() {
+    return {
+      submitted: false,
+      text: "This is a fill-in-the-blank quiz. The questions are  ___1___ and ___2___",
+      blanks: [
+        {
+          options: ["difficult", "hard", "tough"],
+          answer: "",
+        },
+        {
+          options: ["interesting", "engaging", "fascinating"],
+          answer: "",
+        },
+      ],
+    };
+  },
+  computed: {
+    textWithAnswers() {
+      let textCopy = this.text;
+      this.blanks.forEach((blank, index) => {
+        if (blank.answer) {
+          textCopy = textCopy.replace(`___${index + 1}___`, blank.answer);
+        } else {
+          textCopy = textCopy.replace(
+            `___${index + 1}___`,
+            `<span class="blank" @click="openDropdown(index)">___${
+              index + 1
+            }___</span>`
+          );
         }
+      });
+      return textCopy;
     },
-    computed: {
-        textWithBlanks() {
-            let textCopy = this.text;
-            this.blanks.forEach((blank, index) => {
-                textCopy = textCopy.replace(`___${index + 1}___`, `<span class="blank">___${index + 1}___</span>`);
-            });
-            return textCopy;
-        },
+  },
+  methods: {
+    submitQuiz() {
+      this.submitted = true;
     },
-    methods: {
-        submitQuiz() {
-            this.blanks.forEach((blank, index) => {
-                this.text = this.text.replace(`___${index + 1}___`, blank.answer);
-            });
-        },
+    changeAnswer() {
+      this.submitted = false;
     },
-}
+    openDropdown(index) {
+      this.$refs.select[index].focus();
+    },
+  },
+};
 </script>
 
-<style>
+<style scoped>
 .quiz-container {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin: 0 auto;
   flex-direction: column;
-}
-
-.quiz-text {
-  text-align: center;
-}
-
-.quiz-text .blank {
-  background-color: #f2f2f2;
-  padding: 2px 4px;
-  border-radius: 4px;
-}
-
-.quiz-item {
-  display: flex;
   align-items: center;
-  margin-bottom: 10px;
+  justify-content: center;
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
 }
 
-.quiz-label {
-  font-weight: bold;
-  margin-right: 10px;
+select {
+  margin: 10px 0;
 }
 
-.quiz-input {
-  padding: 4px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-}
-
-.quiz-button {
-  background-color: #4CAF50;
-  color: white;
-  padding: 8px 16px;
+button {
+  padding: 10px 20px;
+  background-color: #fff;
+  color: #333;
   border: none;
-  border-radius: 4px;
   cursor: pointer;
-  margin-top: 10px;
+}
+
+.blank {
+  background-color: #fff;
+  color: #333;
+  padding: 5px 10px;
 }
 </style>
-

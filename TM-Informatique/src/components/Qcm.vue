@@ -109,7 +109,6 @@ const loadProgress = () => {
   }
 }
 
-loadProgress()
 </script>
 
 <template>
