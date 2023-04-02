@@ -52,16 +52,6 @@ const router = createRouter ({
             path :'/TextArea',
             component: Textarea
         },
-
-        {
-            path: '/about',
-            component: About
-        },
-
-        {
-            path : '/settings',
-            component: Settings
-        }
     ]
 })
 export default router 
