@@ -47,16 +47,6 @@
             {{ guess }}
           </label>
         </div>
-        <div v-else>
-          <div
-            :class="{
-              quiz__answer: true,
-              'quiz__answer--selected': question.submitted,
-            }"
-          >
-            You selected: {{ question.selectedAnswer }}
-          </div>
-        </div>
       </div>
       <button @click="submitQuiz">Submit Quiz</button>
     </div>
