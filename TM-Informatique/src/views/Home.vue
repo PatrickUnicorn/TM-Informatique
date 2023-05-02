@@ -1,7 +1,6 @@
 <template>
   <div>
-    <Quiz/>
-    <!-- <div>
+    <div>
       <QuizForm v-if="!quizStarted" @create-quiz="createQuiz" />
       <button v-if="!quizStarted" @click="startQuiz">Start Quiz</button>
       <DragDropQuiz
@@ -10,7 +9,7 @@
         :columnTitles="columnTitles"
         :initialElements="initialElements"
       />
-    </div> -->
+    </div>
   </div>
 </template>
 

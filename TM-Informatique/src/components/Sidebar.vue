@@ -11,45 +11,35 @@
     <h3>Menu</h3>
     <div class="menu">
       <router-link class="button" to="/">
-        <span class="material-icons">home</span>
-        <span class="text">Home</span>
+        <span class="material-icons">question_mark</span>
+        <span class="text">DragDropQuiz</span>
+      </router-link>
+      <router-link class="button" to="/quiz">
+        <span class="material-icons">question_mark</span>
+        <span class="text">Quiz</span>
       </router-link>
       <router-link class="button" to="/QCM">
         <span class="material-icons">question_mark</span>
-        <span class="text">Question 1</span>
+        <span class="text">Qcm1</span>
       </router-link>
       <router-link class="button" to="/QCM2">
         <span class="material-icons">question_mark</span>
-        <span class="text">Question 2</span>
-      </router-link>
-      <router-link class="button" to="/chronologie">
-        <span class="material-icons">question_mark</span>
-        <span class="text">Question 3</span>
+        <span class="text">Qcm2</span>
       </router-link>
       <router-link class="button" to="/triage">
         <span class="material-icons">question_mark</span>
-        <span class="text">Question 4</span>
+        <span class="text">Ancien DragDrop</span>
       </router-link>
       <router-link class="button" to="/TextTrou">
         <span class="material-icons">question_mark</span>
-        <span class="text">Question 4</span>
+        <span class="text">Fill-in-the-gaps</span>
       </router-link>
       <router-link class="button" to="/TextArea">
         <span class="material-icons">question_mark</span>
-        <span class="text">Question 5</span>
-      </router-link>
-      <router-link class="button" to="/about">
-        <span class="material-icons">visibility</span>
-        <span class="text">About</span>
+        <span class="text">Question à developpement</span>
       </router-link>
     </div>
     <div class="flex"></div>
-    <div class="menu">
-      <router-link class="button" to="/settings">
-        <span class="material-icons">settings</span>
-        <span class="text">Paramètre</span>
-      </router-link>
-    </div>
   </aside>
 </template>
 
@@ -72,9 +62,9 @@ aside {
   overflow: hidden;
   min-height: 100vh;
   padding: 1rem;
-  left: 0;
-  background-color: var(--dark);
-  color: var(--light);
+  right: 0;
+  background-color: lightgray;
+  color: black;
 
   transition: 0.2s ease-out;
 
@@ -102,12 +92,12 @@ aside {
 
       .material-icons {
         font-size: 2rem;
-        color: var(--light);
+        color: black;
       }
       &:hover {
         .material-icons {
-          color: var(--primary);
-          transform: translateX(0.5rem);
+          color: blue;
+          transform: translateX(0.2rem);
         }
       }
     }
@@ -119,7 +109,7 @@ aside {
     transition: 0.3s ease-out;
   }
   h3 {
-    color: var(--grey);
+    color: darkgray;
     font-size: 0.5rem;
     margin-bottom: 0.5rem;
     text-transform: uppercase;
@@ -134,23 +124,23 @@ aside {
       transition: 0.3s ease-out;
       .material-icons {
         font-size: 2rem;
-        color: var(--light);
+        color: black;
         transition: 0.2s ease-out;
       }
       .text {
-        color: var(--light);
+        color: black;
         transition: 0.2s ease-out;
       }
       &:hover,
       &.router-link-exact-active {
-        background: var(--dark-alt);
+        background: darkgray;
         .material-icons,
         .text {
-          color: var(--primary);
+          color: blue;
         }
       }
       &.router-link-exact-active {
-        border-right: 5px solid var(--primary);
+        border-right: 5px solid blue;
       }
     }
   }
