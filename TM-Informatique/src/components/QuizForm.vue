@@ -44,7 +44,7 @@
         Add Element
       </button>
 
-      <button class="form-group" type="submit">Create Quiz</button>
+      <button class="form-group" type="submit" @click="create">Create Quiz</button>
     </form>
   </div>
 </template>
@@ -68,15 +68,25 @@ export default {
       this.form.initialElements.push("");
     },
     submitQuizForm() {
-      const form = {
-        question: this.form.question,
-        columnTitles: this.form.columnTitles,
-        initialElements: this.form.initialElements,
-      };
-      this.$emit("create-quiz", form);
-      this.resetForm();
-    },
+  const isValid = this.form.columnTitles.every(title => title.trim() !== "") &&
+    this.form.initialElements.every(element => element.trim() !== "") &&
+    this.form.question.trim() !== "";
+  if (isValid) {
+    const form = {
+      question: this.form.question,
+      columnTitles: this.form.columnTitles,
+      initialElements: this.form.initialElements,
+    };
+    this.$emit("create-quiz", form);
+    this.resetForm();
+  } else {
+    alert("All fields are required. Please fill out all fields before submitting.");
+  }
+},
 
+    create(){
+      this.$emit("Created", true);
+    },
     resetForm() {
       this.form.question = "";
       this.form.columnTitles = ["", ""];

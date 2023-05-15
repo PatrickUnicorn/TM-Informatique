@@ -55,8 +55,11 @@
       <div v-if="showResults">
         <h2>Results:</h2>
         <ul>
-          <li v-for="(question, index) in questions" :key="'result' + index">
-            {{ question.text }} <b>{{ checkAnswer(question, index) }}</b>
+          <li v-for="(result, index) in results" :key="'result' + index">
+            <p v-html="result.formattedText"></p>
+            <b
+              v-text="`${result.correct} out of ${result.total} blanks correct`"
+            ></b>
           </li>
         </ul>
       </div>
@@ -72,6 +75,7 @@ export default {
       showResults: false,
       quizSubmitted: false,
       userAnswers: [],
+      results: [],
       newQuestion: {
         text: "",
         blanks: [
@@ -81,12 +85,13 @@ export default {
           },
         ],
       },
-      questions: [],
+      questions: JSON.parse(localStorage.getItem('questions')) || [],
     };
   },
   methods: {
     addQuestion() {
       const question = {
+        type: "fillInBlanks",
         text: this.newQuestion.text,
         blanks: this.newQuestion.blanks.map((blank) => {
           return {
@@ -96,6 +101,7 @@ export default {
         }),
       };
       this.questions.push(question);
+      localStorage.setItem('questions', JSON.stringify(this.questions)); 
       this.newQuestion.text = "";
       this.newQuestion.blanks = [
         {
@@ -121,14 +127,53 @@ export default {
       );
     },
     submitAnswers() {
-      this.showResults = true;
       this.quizSubmitted = true;
+      this.showResults = true;
+      this.results = this.questions.map((question, index) =>
+        this.checkAnswer(question, index)
+      );
+    },
+
+    checkAnswer(question, index) {
+      let userAnswerCorrect = 0;
+      let totalBlanks = question.blanks.length;
+
+      question.blanks.forEach((blank, blankIndex) => {
+        if (blank.word === this.userAnswers[index][blankIndex]) {
+          userAnswerCorrect += 1;
+        }
+      });
+
+      console.log(
+        `Question ${
+          index + 1
+        }: ${userAnswerCorrect} correct out of ${totalBlanks}`
+      );
+
+      return {
+        correct: userAnswerCorrect,
+        total: totalBlanks,
+        formattedText: this.formatAnsweredText(question, index),
+      };
+    },
+
+    formatAnsweredText(question, index) {
+      let formattedText = question.text;
+      question.blanks.forEach((blank, blankIndex) => {
+        const answerPlaceholder = `<span style="color: ${
+          blank.word === this.userAnswers[index][blankIndex] ? "green" : "red"
+        }">${this.userAnswers[index][blankIndex]}</span>`;
+        formattedText = formattedText.replace(blank.word, answerPlaceholder);
+      });
+      return formattedText;
     },
     resetQuiz() {
       this.quizCreated = false;
       this.showResults = false;
       this.userAnswers = [];
       this.quizSubmitted = false;
+      localStorage.removeItem('questions');
+      this.questions = []; 
     },
     formatQuestionText(question) {
       let formattedText = question.text;
@@ -137,13 +182,6 @@ export default {
         formattedText = formattedText.replace(blank.word, blankPlaceholder);
       });
       return formattedText;
-    },
-    checkAnswer(question, index) {
-      const correct = question.blanks.every(
-        (blank, blankIndex) =>
-          blank.word === this.userAnswers[index][blankIndex]
-      );
-      return correct ? "Correct" : "Incorrect";
     },
   },
 };
@@ -155,6 +193,10 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  max-width: 800px; 
+  margin-left: auto; 
+  margin-right: auto; 
+  padding: 0 20px; 
 }
 
 h1 {
