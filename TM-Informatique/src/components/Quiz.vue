@@ -331,30 +331,30 @@ export default {
       localStorage.setItem("questions", JSON.stringify(this.questions));
     },
     saveQuestion(payload) {
-  const { original, edited } = payload;
+      const { original, edited } = payload;
 
-  if (this.addingQuestion) {
-    this.addQuestion();
-  } else if (original !== null) {
-    const index = this.questions.findIndex((q) => q.id === original.id);
+      if (this.addingQuestion) {
+        this.addQuestion();
+      } else if (original !== null) {
+        const index = this.questions.findIndex((q) => q.id === original.id);
 
-    if (edited && edited.title && edited.guesses && edited.answer) {
-      if (!edited.media) {
-        edited.media = {
-          type: "",
-          data: "",
-        };
-      } else {
-        edited.media.type = edited.media.type || "";
-        edited.media.data = edited.media.data || "";
+        if (edited && edited.title && edited.guesses && edited.answer) {
+          if (!edited.media) {
+            edited.media = {
+              type: "",
+              data: "",
+            };
+          } else {
+            edited.media.type = edited.media.type || "";
+            edited.media.data = edited.media.data || "";
+          }
+          this.questions.splice(index, 1, edited);
+        }
       }
-      this.questions.splice(index, 1, edited);
-    }
-  }
-  localStorage.setItem("questions", JSON.stringify(this.questions));
-  this.selectedQuestion = null;
-  this.clearFormData();
-},
+      localStorage.setItem("questions", JSON.stringify(this.questions));
+      this.selectedQuestion = null;
+      this.clearFormData();
+    },
 
     toggleQuestionManager() {
       this.showQuestionManager = !this.showQuestionManager;

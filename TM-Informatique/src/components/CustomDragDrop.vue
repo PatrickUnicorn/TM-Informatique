@@ -1,5 +1,10 @@
 <template>
-  <div class="drop-zone" @drop="onDrop($event)" @dragenter.prevent @dragover.prevent>
+  <div
+    class="drop-zone"
+    @drop="onDrop($event)"
+    @dragenter.prevent
+    @dragover.prevent
+  >
     <div
       v-for="(element, index) in elements"
       :key="index"
@@ -21,16 +26,19 @@ export default {
   },
   methods: {
     startDrag(event, element, index) {
-      event.dataTransfer.dropEffect = 'move';
-      event.dataTransfer.effectAllowed = 'move';
-      event.dataTransfer.setData('element', element);
-      event.dataTransfer.setData('sourceIndex', index);
+      event.dataTransfer.dropEffect = "move";
+      event.dataTransfer.effectAllowed = "move";
+      event.dataTransfer.setData("element", element);
+      event.dataTransfer.setData("sourceIndex", index);
     },
     onDrop(event) {
-      const element = event.dataTransfer.getData('element');
-      const sourceIndex = parseInt(event.dataTransfer.getData('sourceIndex'), 10);
+      const element = event.dataTransfer.getData("element");
+      const sourceIndex = parseInt(
+        event.dataTransfer.getData("sourceIndex"),
+        10
+      );
 
-      this.$emit('drop', { element, sourceIndex });
+      this.$emit("drop", { element, sourceIndex });
     },
   },
 };

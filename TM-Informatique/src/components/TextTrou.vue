@@ -85,7 +85,8 @@ export default {
           },
         ],
       },
-      questions: JSON.parse(localStorage.getItem('fillInTheBlankQuestions')) || [],
+      questions:
+        JSON.parse(localStorage.getItem("fillInTheBlankQuestions")) || [],
     };
   },
   methods: {
@@ -101,7 +102,10 @@ export default {
         }),
       };
       this.questions.push(question);
-      localStorage.setItem('fillInTheBlankQuestions', JSON.stringify(this.questions)); 
+      localStorage.setItem(
+        "fillInTheBlankQuestions",
+        JSON.stringify(this.questions)
+      );
       this.newQuestion.text = "";
       this.newQuestion.blanks = [
         {
@@ -172,8 +176,8 @@ export default {
       this.showResults = false;
       this.userAnswers = [];
       this.quizSubmitted = false;
-      localStorage.removeItem('questions');
-      this.questions = []; 
+      localStorage.removeItem("questions");
+      this.questions = [];
     },
     formatQuestionText(question) {
       let formattedText = question.text;
@@ -193,10 +197,10 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
-  max-width: 800px; 
-  margin-left: auto; 
-  margin-right: auto; 
-  padding: 0 20px; 
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 20px;
 }
 
 h1 {

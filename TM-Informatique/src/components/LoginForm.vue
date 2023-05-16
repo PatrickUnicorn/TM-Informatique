@@ -46,6 +46,34 @@
   </script>
   <style scoped>
 
+<script>
+export default {
+  props: ["isAdmin", "isUser"],
+  data() {
+    return {
+      loginUsername: "",
+      loginPassword: "",
+      loginError: false,
+    };
+  },
+  methods: {
+    login() {
+      if (this.loginUsername === "admin" && this.loginPassword === "admin123") {
+        this.$emit("login", "admin");
+        this.loginError = false;
+      } else {
+        this.loginError = true;
+      }
+      this.loginUsername = "";
+      this.loginPassword = "";
+    },
+    loginAsUser() {
+      this.$emit("login", "user");
+    },
+  },
+};
+</script>
+<style scoped>
 form input[type="text"],
 form input[type="password"] {
   width: 100%;
