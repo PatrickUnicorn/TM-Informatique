@@ -73,15 +73,14 @@
         <label class="edit-form__label">
           Media Type:
           <select
-  v-model="editingQuestionCopy.media.type"
-  class="edit-form__select"
->
-  <option value="">None</option>
-  <option value="image">Image</option>
-  <option value="video">Video</option>
-  <option value="video">Geogebra</option>
-</select>
-
+            v-model="editingQuestionCopy.media.type"
+            class="edit-form__select"
+          >
+            <option value="">None</option>
+            <option value="image">Image</option>
+            <option value="video">Video</option>
+            <option value="video">Geogebra</option>
+          </select>
         </label>
         <label
           class="edit-form__label"

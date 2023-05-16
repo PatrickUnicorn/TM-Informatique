@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import CustomDragDrop from './CustomDragDrop.vue';
+import CustomDragDrop from "./CustomDragDrop.vue";
 
 export default {
   components: {
@@ -95,6 +95,4 @@ export default {
   margin-bottom: 5px;
   cursor: move;
 }
-
 </style>
-

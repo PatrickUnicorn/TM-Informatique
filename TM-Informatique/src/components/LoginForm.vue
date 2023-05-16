@@ -1,51 +1,50 @@
 <template>
-      <div class="login-form" v-if="!isAdmin && !isUser">
-        <h2>Please Login</h2>
-        <form @submit.prevent="login">
-          <label>
-            Username:
-            <input type="text" v-model="loginUsername" />
-          </label>
-          <label>
-            Password:
-            <input type="password" v-model="loginPassword" />
-          </label>
-          <button id="loginAsAdmin" @click="login">Login as Admin</button>
-          <p v-show="loginError">Invalid username or password.</p>
-          <button id="loginAsUser" @click="loginAsUser">Login as User</button>
-        </form>
-      </div>
-  </template>
-  
-  <script>
-  export default {
-    props: ['isAdmin', 'isUser'],
-    data() {
-      return {
-        loginUsername: "",
-        loginPassword: "",
-        loginError: false
-      };
-    },
-    methods: {
-      login() {
-        if (this.loginUsername === "admin" && this.loginPassword === "admin123") {
-          this.$emit("login", "admin");
-          this.loginError = false;
-        } else {
-          this.loginError = true;
-        }
-        this.loginUsername = "";
-        this.loginPassword = "";
-      },
-      loginAsUser() {
-        this.$emit("login", "user");
-      }
-    }
-  };
-  </script>
-  <style scoped>
+  <div class="login-form" v-if="!isAdmin && !isUser">
+    <h2>Please Login</h2>
+    <form @submit.prevent="login">
+      <label>
+        Username:
+        <input type="text" v-model="loginUsername" />
+      </label>
+      <label>
+        Password:
+        <input type="password" v-model="loginPassword" />
+      </label>
+      <button id="loginAsAdmin" @click="login">Login as Admin</button>
+      <p v-show="loginError">Invalid username or password.</p>
+      <button id="loginAsUser" @click="loginAsUser">Login as User</button>
+    </form>
+  </div>
+</template>
 
+<script>
+export default {
+  props: ["isAdmin", "isUser"],
+  data() {
+    return {
+      loginUsername: "",
+      loginPassword: "",
+      loginError: false,
+    };
+  },
+  methods: {
+    login() {
+      if (this.loginUsername === "admin" && this.loginPassword === "admin123") {
+        this.$emit("login", "admin");
+        this.loginError = false;
+      } else {
+        this.loginError = true;
+      }
+      this.loginUsername = "";
+      this.loginPassword = "";
+    },
+    loginAsUser() {
+      this.$emit("login", "user");
+    },
+  },
+};
+</script>
+<style scoped>
 form input[type="text"],
 form input[type="password"] {
   width: 100%;
