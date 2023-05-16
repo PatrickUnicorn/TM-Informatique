@@ -85,7 +85,7 @@ export default {
           },
         ],
       },
-      questions: JSON.parse(localStorage.getItem('questions')) || [],
+      questions: JSON.parse(localStorage.getItem('fillInTheBlankQuestions')) || [],
     };
   },
   methods: {
@@ -101,7 +101,7 @@ export default {
         }),
       };
       this.questions.push(question);
-      localStorage.setItem('questions', JSON.stringify(this.questions)); 
+      localStorage.setItem('fillInTheBlankQuestions', JSON.stringify(this.questions)); 
       this.newQuestion.text = "";
       this.newQuestion.blanks = [
         {

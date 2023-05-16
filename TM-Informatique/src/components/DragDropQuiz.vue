@@ -68,8 +68,11 @@ export default {
   vertical-align: top;
   margin-right: 10px;
   text-align: center;
+  flex: 0 0 auto;
 }
-
+.column:last-child {
+  margin-right: 0;
+}
 .column h2 {
   margin-bottom: 5px;
 }

@@ -1,6 +1,5 @@
 <template>
   <div>
-    <div>
       <QuizForm v-if="!quizStarted" @create-quiz="createQuiz" />
       <button v-if="!quizStarted" @click="startQuiz">Start Quiz</button>
       <button v-if="quizStarted" @click="resetQuiz">Reset Quiz</button>
@@ -10,7 +9,6 @@
         :columnTitles="columnTitles"
         :initialElements="initialElements"
       />
-    </div>
   </div>
 </template>
 
