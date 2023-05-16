@@ -164,102 +164,64 @@ const loadProgress = () => {
     </section>
   </main>
 </template>
-
 <style scoped>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+.qcm {
+  width: 80%;
+  margin: auto;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
 }
 
-.qcm {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-self: center;
-  border-radius: 15px;
-  padding: 20px 0px;
-  background-color: var(--dark-alt);
-}
-h2 {
-  color: var(--light);
-  font-size: 2rem;
-  margin-bottom: 2rem;
-}
-.quiz {
-  background-color: var(--dark);
-  padding: 1rem;
-  width: 100%;
-  max-width: 640px;
-  border-radius: 0.5rem;
-  flex-direction: column;
-}
 .quiz-info {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 1rem;
+  margin-bottom: 20px;
 }
-.quiz-info .question {
-  color: var(--light);
-  font-size: 1.25rem;
-}
-.quiz-info .score {
-  color: var(--light);
-  font-size: 1.25rem;
-}
+
 .options {
-  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
 }
+
 .option {
-  padding: 1rem;
-  display: block;
-  background-color: white;
-  margin-bottom: 0.5rem;
-  border-radius: 0.5rem;
-  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
 }
-.option:hover {
-  background-color: var(--grey);
+
+.option input[type="radio"] {
+  margin-right: 10px;
 }
+
 .option.correct {
-  background-color: #00ff37;
+  background-color: #d4edda;
+  color: #155724;
 }
+
 .option.wrong {
-  background-color: #ff0008;
+  background-color: #f8d7da;
+  color: #721c24;
 }
-.option:last-of-type {
-  margin-bottom: 0;
-}
+
 .option.disabled {
-  opacity: 0.5;
+  opacity: 0.6;
 }
-.option input {
-  display: none;
-}
+
 .buttonQcm {
-  appearance: none;
-  outline: none;
+  margin-top: 20px;
+  padding: 10px 20px;
+  color: white;
+  background-color: #007bff;
   border: none;
+  border-radius: 4px;
   cursor: pointer;
-  padding: 0.5rem 1rem;
-  background-color: var(--primary);
-  color: var(--dark);
-  font-weight: 700;
-  text-transform: uppercase;
-  font-size: 1.2rem;
-  border-radius: 0.5rem;
 }
-button:disabled {
-  background-color: var(--grey);
+
+.buttonQcm:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
 }
-h2 {
-  font-size: 2rem;
-  margin-bottom: 2rem;
-  text-align: center;
-}
-.question-qcm {
-  color: var(--light);
-  font-size: 1.5rem;
-  text-align: center;
+
+button:hover:not(:disabled) {
+  background-color: #0056b3;
 }
 </style>

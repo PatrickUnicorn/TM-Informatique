@@ -12,7 +12,7 @@
           </label>
           <button id="loginAsAdmin" @click="login">Login as Admin</button>
           <p v-show="loginError">Invalid username or password.</p>
-          <button id="loginAsUser" @click="loginAsUser">Login as User</button>
+          <button id="loginAsUser" @click="loginAsUser">Login as Visitor</button>
         </form>
       </div>
   </template>
