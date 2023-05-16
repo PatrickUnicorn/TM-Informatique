@@ -20,10 +20,14 @@
               @click="
                 selectedQuestion = question;
                 editingQuestionCopy = JSON.parse(JSON.stringify(question));
+                if (!editingQuestionCopy.media) {
+                  editingQuestionCopy.media = { type: '', data: '' };
+                }
               "
             >
               Edit
             </button>
+
             <button @click="deleteQuestion(question)">
               Delete {{ question.title }}
             </button>
@@ -69,14 +73,15 @@
         <label class="edit-form__label">
           Media Type:
           <select
-            v-model="editingQuestionCopy.media.type"
-            class="edit-form__select"
-          >
-            <option value="">None</option>
-            <option value="image">Image</option>
-            <option value="video">Geogebra</option>
-            <option value="video">Video</option>
-          </select>
+  v-model="editingQuestionCopy.media.type"
+  class="edit-form__select"
+>
+  <option value="">None</option>
+  <option value="image">Image</option>
+  <option value="video">Video</option>
+  <option value="video">Geogebra</option>
+</select>
+
         </label>
         <label
           class="edit-form__label"
@@ -168,12 +173,12 @@ export default {
       this.$emit("delete-question", question);
     },
     saveQuestion() {
-  this.$emit("save-question", {
-    original: this.selectedQuestion,
-    edited: this.editingQuestionCopy,
-  });
-  this.selectedQuestion = null;
-},
+      this.$emit("save-question", {
+        original: this.selectedQuestion,
+        edited: this.editingQuestionCopy,
+      });
+      this.selectedQuestion = null;
+    },
 
     addQuestion() {
       this.$emit("add-question");
